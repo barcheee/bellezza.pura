@@ -1,13 +1,11 @@
-//cambiar a product.repository.interface.ts
 import { Collection, ObjectId } from 'mongodb';
-//import { getDB } from '../Database/database'; //repo mongo
-import { IProduct } from '../filtering/product_model.js';
+import { getDB } from '../filtering/product.mongo.repository';
+import { IProduct } from './product_model.js';
 
 export class ProductRepository {
-  private !collection: Collection<IProduct>;
+  private collection!: Collection<IProduct>;
 
   constructor() {
-    // Al instanciar el repositorio, obtenemos la colección de 'products'
     this.collection = getDB().collection<IProduct>('products');
   }
 
@@ -29,8 +27,6 @@ export class ProductRepository {
     const result = await this.collection.insertOne(newProduct);
     return { ...newProduct, _id: result.insertedId };
   }
-
-
 
   async delete(id: string): Promise<void> {
     await this.collection.deleteOne({ _id: new ObjectId(id) });
