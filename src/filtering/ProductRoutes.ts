@@ -4,8 +4,8 @@ import { ProductController } from '../filtering/product.controller.js';
 const router = Router();
 const productController = new ProductController();
 
-router.get('/', productController.getAllProducts);
-router.get('/:id', productController.getProductById);
+router.get('/', productController.findAll);
+router.get('/:id', productController.findById);
 router.post('/', productController.createProduct);
 
 export default router;

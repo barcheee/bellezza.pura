@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'; //importar otras cosas más
-import { create, findAll, findById } from './product.mongo.repository';
+import { createProduct, findAll, findById } from './product.mongo.repository';
 
 export class ProductController {
   async findAll(req: Request, res: Response) {
@@ -26,14 +26,10 @@ export class ProductController {
   
   async createProduct(req: Request, res: Response) {
     try {
-      const newProduct = await create (req.body);
+      const newProduct = await createProduct (req.body);
       res.status(201).json(newProduct);
     } catch (error) {
       res.status(400).json({ message: 'Error al crear el producto', details: error });
     }
   }
-}
-
-function findAll() {
-  throw new Error('Function not implemented.');
 }
