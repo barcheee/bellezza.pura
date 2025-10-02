@@ -9,5 +9,6 @@ export class Product {
       public price: number,
       public category: string,
       public stock: number,
+      public _id: string = crypto.randomUUID()
       ) {}
 }

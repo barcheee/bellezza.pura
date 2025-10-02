@@ -1,5 +1,5 @@
-import { Request, Response } from 'express'; //importar otras cosas más
-import { createProduct, findAll, findById } from './product.mongo.repository';
+import { Request, Response } from 'express';
+import { findAll, findById } from './product.mongo.repository.js';
 
 export class ProductController {
   async findAll(req: Request, res: Response) {
@@ -11,7 +11,7 @@ export class ProductController {
     }
   }
 
-  async findById (req: Request, res: Response) {
+  async findById(req: Request, res: Response) {
     try {
       const product = await findById(req.params.id);
       if (product) {
@@ -23,13 +23,33 @@ export class ProductController {
       res.status(500).json({ message: 'Error al obtener el producto' });
     }
   }
-  
-  async createProduct(req: Request, res: Response) {
+
+  async filter(req: Request, res: Response) {
     try {
-      const newProduct = await createProduct (req.body);
-      res.status(201).json(newProduct);
+      const { category, description } = req.query;
+      const products = await findAll();
+
+      let filtrados = products;
+
+      if (category) {
+        filtrados = filtrados.filter((p: { category: string }) =>
+          p.category.toLowerCase() === (category as string).toLowerCase()
+        );
+      }
+
+      if (description) {
+        filtrados = filtrados.filter((p: any) =>
+  p.description.toLowerCase().includes((description as string).toLowerCase())
+);
+      }
+
+      if (filtrados.length > 0) {
+        res.status(200).json(filtrados);
+      } else {
+        res.status(404).json({ message: "No se encontraron productos con esos filtros" });
+      }
     } catch (error) {
-      res.status(400).json({ message: 'Error al crear el producto', details: error });
+      res.status(500).json({ message: "Error al filtrar productos" });
     }
   }
 }
