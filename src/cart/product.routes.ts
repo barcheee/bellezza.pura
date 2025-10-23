@@ -5,8 +5,8 @@ export const productRouter = Router();
 const productController = new ProductController();
 
 // Rutas del carrito
-productRouter.post('/cart/add', productController.addToCart.bind(productController));
-productRouter.post('/cart/remove', productController.removeFromCart.bind(productController));
+//productRouter.post('/cart/add', productController.addToCart.bind(productController));
+//productRouter.post('/cart/remove', productController.removeFromCart.bind(productController));
 productRouter.get('/cart/products', productController.getCartProducts.bind(productController));
 productRouter.get('/cart/total', productController.getCartTotal.bind(productController));
 productRouter.post('/cart/checkout', productController.checkoutCart.bind(productController));

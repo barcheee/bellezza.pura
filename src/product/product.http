@@ -1,0 +1,40 @@
+### Obtener todos los productos
+GET http://localhost:3000/api/products/getAll
+Content-Type: application/json
+
+###
+
+### Obtener un producto por ID
+GET http://localhost:3000/api/products/:id
+Content-Type: application/json
+
+###
+
+### Crear un nuevo producto
+POST http://localhost:3000/api/products/create
+Content-Type: application/json
+
+{
+  "name": "Crema facial hidratante",
+  "price": 4500,
+  "stock": 30,
+  "description": "Crema nutritiva con ácido hialurónico",
+  "category": "Skincare"
+}
+
+###
+
+### Actualizar un producto
+PUT http://localhost:3000/api/products/:id
+Content-Type: application/json
+
+{
+  "price": 4800,
+  "stock": 25
+}
+
+###
+
+### Eliminar un producto
+DELETE http://localhost:3000/api/products/:id
+Content-Type: application/json
