@@ -1,0 +1,15 @@
+### Obtener por filtro
+GET http://localhost:3000/api/filtering/filter
+Content-Type: application/json
+
+###
+
+### Obtener por listar todo
+GET http://localhost:3000/api/filtering/findAll
+Content-Type: application/json
+
+###
+
+### Obtener por ID
+GET http://localhost:3000/api/filtering/:id
+Content-Type: application/json

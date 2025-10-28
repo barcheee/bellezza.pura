@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { findAll, findById } from './product.mongo.repository.js';
+import { findAll, findById } from './filtering-mongodb-repository.js';
 
-export class ProductController {
+export class FilteringController {
   async findAll(req: Request, res: Response) {
     try {
       const products = await findAll();
@@ -26,29 +26,18 @@ export class ProductController {
 
   async filter(req: Request, res: Response) {
     try {
-      const { category, description } = req.query;
-      const products = await findAll();
+      const category = req.query.category as string | undefined;
+      const description = req.query.description as string | undefined;
 
-      let filtrados = products;
+    const filtrados = await findAll (category, description);
 
-      if (category) {
-        filtrados = filtrados.filter((p: { category: string }) =>
-          p.category.toLowerCase() === (category as string).toLowerCase()
-        );
-      }
-
-      if (description) {
-        filtrados = filtrados.filter((p: any) =>
-  p.description.toLowerCase().includes((description as string).toLowerCase())
-);
-      }
-
-      if (filtrados.length > 0) {
+if (filtrados.length > 0) {
         res.status(200).json(filtrados);
       } else {
         res.status(404).json({ message: "No se encontraron productos con esos filtros" });
       }
     } catch (error) {
+      console.error(error);
       res.status(500).json({ message: "Error al filtrar productos" });
     }
   }

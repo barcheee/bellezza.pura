@@ -1,6 +1,6 @@
 import { Collection, ObjectId } from 'mongodb';
-import { getDb } from '../filtering/product.mongo.repository.js';
-import { IProduct } from './product_model.js';
+import { IProduct } from './filtering-model.js';
+import { getDb } from './filtering-mongodb-repository.js';
 
 export class ProductRepository {
   private collection!: Collection<IProduct>;
