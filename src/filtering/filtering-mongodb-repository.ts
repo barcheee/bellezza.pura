@@ -1,3 +1,4 @@
+
 import { Filter, MongoClient, ObjectId } from "mongodb";
 import { IProduct } from "./filtering-model.js";
 
@@ -29,7 +30,7 @@ export class FilteringMongoRepository {
             mongoClient.connect();
     }
 
-    async findAll(category?: string, description?: string): Promise<IProduct[]> {
+    async getAll(category?: string, description?: string): Promise<IProduct[]> {
         const filter: Filter<IProduct> = {};
 
         if (category) {
@@ -57,8 +58,8 @@ export function getDb() {
 
 const repository = new FilteringMongoRepository();
 
-export async function findAll(category?: string, description?: string) {
-    return await repository.findAll(category, description);
+export async function getAll(category?: string, description?: string) {
+    return await repository.getAll(category, description);
 }
 
 export async function findById(id: string) {

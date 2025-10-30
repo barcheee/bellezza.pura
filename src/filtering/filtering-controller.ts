@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { findAll, findById } from './filtering-mongodb-repository.js';
+import { findById, getAll } from './filtering-mongodb-repository.js';
 
 export class FilteringController {
   async findAll(req: Request, res: Response) {
-    try {
-      const products = await findAll();
+    try {0
+      const products = await getAll();
       res.status(200).json(products);
     } catch (error) {
       res.status(500).json({ message: 'Error al obtener los productos' });
@@ -29,7 +29,7 @@ export class FilteringController {
       const category = req.query.category as string | undefined;
       const description = req.query.description as string | undefined;
 
-    const filtrados = await findAll (category, description);
+    const filtrados = await getAll (category, description);
 
 if (filtrados.length > 0) {
         res.status(200).json(filtrados);

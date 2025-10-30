@@ -9,7 +9,7 @@ export class ProductRepository {
     this.collection = getDb().collection<IProduct>('products');
   }
 
-  async findAll(): Promise<IProduct[]> {
+  async getAll(): Promise<IProduct[]> {
     return this.collection.find({}).toArray();
   }
 

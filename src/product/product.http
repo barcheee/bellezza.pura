@@ -10,6 +10,46 @@ Content-Type: application/json
 
 ###
 
+### Crear un nuevo producto facial
+POST http://localhost:3000/api/products/create
+Content-Type: application/json
+
+{
+  "name": "Sérum Vitamina C",
+  "description": "Sérum antioxidante para dar luminosidad y unificar tono",
+  "price": 5200,
+  "category": "Skincare",
+  "stock": 25
+}
+
+###
+
+### Crear un nuevo producto facial
+POST http://localhost:3000/api/products/create
+Content-Type: application/json
+
+{
+  "name": "Máscara de Pestañas Volumen",
+  "description": "Máscara color negro intenso para dar volumen y definición",
+  "price": 2900,
+  "category": "Maquillaje",
+  "stock": 50
+}
+
+###
+
+### Crear un nuevo producto capilar
+POST http://localhost:3000/api/products/create
+Content-Type: application/json
+
+{
+  "name": "Acondicionador Reparador",
+  "description": "Acondicionador con aceite de argán para cabello dañado",
+  "price": 3100,
+  "category": "Capilar",
+  "stock": 35
+}
+
 ### Crear un nuevo producto
 POST http://localhost:3000/api/products/create
 Content-Type: application/json

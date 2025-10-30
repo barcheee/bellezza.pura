@@ -1,5 +1,11 @@
 ### Obtener por filtro
-GET http://localhost:3000/api/filtering/filter
+GET http://localhost:3000/api/filtering/filter?category=Skincare
+Content-Type: application/json
+
+###
+
+### Filtrar por descripción
+GET http://localhost:3000/api/filtering/filter?description=Acondicionador
 Content-Type: application/json
 
 ###
