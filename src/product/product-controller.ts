@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { Product } from './product.entity.js';
-import { ProductMongoRepository } from './product.mongodb.repository.js';
+import { Product } from './product-entity.js';
+import { ProductMongoRepository } from './product-mongodb-repository.js';
 
 const productRepository = new ProductMongoRepository();
 

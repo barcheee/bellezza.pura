@@ -1,6 +1,6 @@
 import express from 'express';
 import { filteringRoutes } from './filtering/filtering-routes.js';
-import { productRouter } from './product/product.routes.js';
+import { productRouter } from './product/product-routes.js';
 
 const app = express();
 

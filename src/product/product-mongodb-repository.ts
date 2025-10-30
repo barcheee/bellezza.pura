@@ -1,5 +1,5 @@
-import { ProductRepository } from './product.repository.interface.js';
-import { Product } from './product.entity.js';
+import { ProductRepository } from './product-repository-interface.js';
+import { Product } from './product-entity.js';
 import { Collection, ObjectId, MongoClient } from 'mongodb';
 
 const uri = process.env.MONGO_URI || 'mongodb://root:example@localhost:27017/';//'mongodb://root:example@localhost:27017/';
