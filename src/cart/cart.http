@@ -1,0 +1,33 @@
+### Agregar al carrito
+POST http://localhost:3000/api/cart/add
+Content-Type: application/json
+
+{
+    "productId": "1a6a4462-5848-4be3-8d02-c74da40df588",
+        "quantity": 2
+}
+
+
+### Eliminar del carrito
+### En el caso de que no se especifique quantity, se elimina el producto por completo del carrito
+POST http://localhost:3000/api/cart/remove
+Content-Type: application/json
+
+{
+    "productId": "1a6a4462-5848-4be3-8d02-c74da40df588",
+    "quantity": 1
+}
+
+### Obtener productos del carrito
+GET http://localhost:3000/api/cart/products
+
+### Obtener total del carrito
+GET http://localhost:3000/api/cart/total
+
+### Confirmar y guardar pedido
+POST http://localhost:3000/api/cart/confirm
+
+
+
+
+

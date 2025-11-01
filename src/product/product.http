@@ -5,7 +5,7 @@ Content-Type: application/json
 ###
 
 ### Obtener un producto por ID
-GET http://localhost:3000/api/products/:id
+GET http://localhost:3000/api/products/1779287b-ac46-4ab6-9c4c-52d55dad347e
 Content-Type: application/json
 
 ###
@@ -55,11 +55,11 @@ POST http://localhost:3000/api/products/create
 Content-Type: application/json
 
 {
-  "name": "Crema facial hidratante",
-  "price": 4500,
-  "stock": 30,
-  "description": "Crema nutritiva con ácido hialurónico",
-  "category": "Skincare"
+     "name": "Aceite corporal relajante",
+    "description": "Mezcla de aceites esenciales para masaje y relajación.",
+    "price": 3200,
+    "category": "Body",
+    "stock": 20
 }
 
 ###

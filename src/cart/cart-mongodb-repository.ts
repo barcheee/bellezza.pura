@@ -1,25 +1,37 @@
-import { Product } from "./product_entity.js";
-import { ProductRepository, CartProduct } from "./product.repository.interface.js";
-import ProductModel from "./product.model.js"; 
+import { CartRepository, CartProduct } from "./cart-repository-interface.js";
+import { Product } from '../product/product-entity.js';
+import { Collection } from 'mongodb';
+import { getProductCollection } from '../product/product-entity.js';
 
-export class MongoProductRepository implements ProductRepository {
+
+export class CartMongoRepository implements CartRepository  {
     private cart: Map<string, number> = new Map();
+     private products: Collection<Product>;
+    
+      constructor() {
+        this.products = getProductCollection();
+      }
 
     async findById(id: string): Promise<Product | undefined> {
-        const product = await ProductModel.findById(id).lean();
-        return product as Product | undefined;
+        const byId = await this.products.findOne({ _id: id } as any);
+        return byId ? (byId as Product) : undefined;
     }
 
+
     async addToCart(productId: string, quantity: number): Promise<void> {
+        const product = await this.findById(productId);
         const current = this.cart.get(productId) || 0;
         this.cart.set(productId, current + quantity);
     }
 
     async removeFromCart(productId: string, quantity?: number): Promise<void> {
-        if (!this.cart.has(productId)) return;
-        if (quantity === undefined) {
+        if (this.cart.has(productId))  {
+            
+
+        if (quantity === undefined ) {
             this.cart.delete(productId);
-        } else {
+        } 
+        else if (quantity > 0) {
             const current = this.cart.get(productId)!;
             if (current <= quantity) {
                 this.cart.delete(productId);
@@ -27,7 +39,14 @@ export class MongoProductRepository implements ProductRepository {
                 this.cart.set(productId, current - quantity);
             }
         }
+        else {
+            throw new Error('INVALID_QUANTITY');
+        }
+    } 
+    else {
+        throw new Error('PRODUCT_NOT_IN_CART');
     }
+}
 
     async getCartProducts(): Promise<CartProduct[]> {
         const cartProducts: CartProduct[] = [];
@@ -51,9 +70,8 @@ export class MongoProductRepository implements ProductRepository {
         return total;
     }
 
-    async checkoutCart(): Promise<void> {
-        // lugar para la logica de la orden 
-        console.log("Orden de compra realizada");
+    async clearCart(): Promise<void> {
+
         this.cart.clear();
     
     }

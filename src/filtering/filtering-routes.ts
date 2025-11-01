@@ -1,9 +1,13 @@
 import { Router } from 'express';
 import { FilteringController } from './filtering-controller.js';
 
-export const filteringRoutes =Router();
-const filteringController = new FilteringController();
+export class FilteringRouter {
+    public readonly router = Router()
+    constructor(){
+        const controller = new FilteringController();
+        this.router.get ('/filter', controller.filter.bind (controller));
+        this.router.get ('/findAll', controller.findAll.bind (controller));
+        this.router.get ('/:id', controller.findById.bind(controller));
+    }
 
-filteringRoutes.get ('/filter', filteringController.filter.bind (filteringController));
-filteringRoutes.get ('/findAll', filteringController.findAll.bind (filteringController));
-filteringRoutes.get ('/:id', filteringController.findById.bind(filteringController));
+}

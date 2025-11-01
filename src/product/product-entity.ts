@@ -1,4 +1,5 @@
 import crypto from 'node:crypto'
+import { getDB } from '../config/conection.js';
 
 export class Product {
       constructor(
@@ -11,4 +12,7 @@ export class Product {
       ) {}
 }
 
-
+export function getProductCollection() {
+  const db = getDB();
+  return db.collection<Product>('products');
+}

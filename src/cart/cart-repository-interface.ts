@@ -1,11 +1,11 @@
-import { Product } from "./product_entity.js";
+import { Product } from '../product/product-entity' ;
 
 export interface CartProduct {
     product: Product;
     quantity: number;
 }
 
-export interface ProductRepository {
+export interface CartRepository {
     // Buscar producto por id
     findById(id: string): Promise<Product | undefined>;
 
@@ -21,6 +21,6 @@ export interface ProductRepository {
     // Ver total del carrito
     getCartTotal(): Promise<number>;
 
-    // Proceder a orden de compra (envía un mensaje)
-    checkoutCart(): Promise<void>;
+    // limpiar el carrito
+    clearCart(): Promise<void>;
 }
