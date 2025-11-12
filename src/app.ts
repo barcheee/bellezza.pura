@@ -1,5 +1,7 @@
 import express from 'express';
 import { connectDB } from './config/conection.js';
+// importe y use cors a su vez npm install cors y npm install --save-dev @types/cors
+import cors from 'cors';
 
 const app = express();
 
@@ -12,7 +14,7 @@ async function startServer() {
   const { ProductRouter } = await import('./product/product-routes.js');
   const { CartRouter } = await import('./cart/cart-routes.js');
   const { OrderRouter } = await import('./order/order-routes.js');
-
+  app.use(cors());
   app.use(express.json());
 
   const productRouter = new ProductRouter();
