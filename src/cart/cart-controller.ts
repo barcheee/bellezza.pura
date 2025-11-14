@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { CartMongoRepository } from './cart-mongodb-repository.js';
-import { OrderRepository } from '../order/order-repository.js';
+import { OrderMongoRepository } from '../order/order-mongodb-repository.js';
 import { Order } from '../order/order-entity.js';
 
 const cartRepository = new CartMongoRepository();
-const orderRepository = new OrderRepository();
+const orderRepository = new OrderMongoRepository();
 
 export class CartController {
 

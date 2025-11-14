@@ -12,8 +12,8 @@ export class Order {
   constructor(
     public items: OrderItem[],
     public total: number,
-    public _id: string = crypto.randomUUID(),
-    public createdAt: Date = new Date()
+    public date: Date = new Date(),
+    public _id: string = crypto.randomUUID()
   ) {}
 }
 
